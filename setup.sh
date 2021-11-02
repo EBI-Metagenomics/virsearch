@@ -3,19 +3,20 @@
 # VirSearch installer script
 # (C) 2021 EMBL - EBI
 
+ENV_PATH=/hps/software/users/rdf/metagenomics/service-team/software/miniconda_py39/envs
+
 # uncomment to delete existing env
 #conda env remove --name virsearch
+#rm -rf $ENV_PATH/virsearch
 
-echo "Installing VirSearch"
-mamba create -c conda-forge -c bioconda -n virsearch snakemake
-
+echo "Creating VirSearch conda environment"
+conda env create -f envs/virsearch.yml
 conda activate virsearch
 
-echo "Creating required envs"
-conda env create -f envs/deepvirfinder.yml
-conda env create -f envs/checkv.yml
-conda env create -f envs/virsorter2.yml
-conda env create -f envs/vibrant.yml
+echo "Retriving database"
+wget http://ftp.ebi.ac.uk/pub/databases/metagenomics/genome_sets/virsearch_db.tar.gz
+tar -zxf virsearch_db.tar.gz
+rm virsearch_db.tar.gz
 
 echo "Final settings"
 conda env config vars set SNAKEMAKE_OUTPUT_CACHE=/hps/software/users/rdf/metagenomics/service-team/caches/snakemake

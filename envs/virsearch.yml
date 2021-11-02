@@ -1,0 +1,22 @@
+name: virsearch
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - checkv
+  - cd-hit
+  - r=3.6.0
+  - python=3.7
+  - numpy 
+  - keras=2.2.4 
+  - scikit-learn 
+  - Biopython 
+  - h5py=2.10.0
+  - mkl-service
+  - theano=1.0.3
+  - numpy=1.17
+  - scikit-learn=0.21.3
+  - vibrant=1.2.1
+  - virsorter=2.2.2
+  - mamba
+  - snakemake
