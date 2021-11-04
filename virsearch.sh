@@ -11,7 +11,9 @@ INPUTDIR='none'
 OUTPUTDIR='none'
 NUMTHREADS=4
 EXECUTION='single'
-VIRSEARCHDIR=/hps/software/users/rdf/metagenomics/service-team/software/miniconda_py39/envs/virsearch/virsearch
+VIRSEARCHDIR=/nfs/production/rdf/metagenomics/pipelines/prod/virsearch
+CONDA_ACTIVATE=/hps/software/users/rdf/metagenomics/service-team/software/miniconda_py39/bin/activate
+CONDA_ENV=virsearch
 
 error_exit()
 {
@@ -53,9 +55,12 @@ if [ -d "$OUTPUTDIR" ]
 then
     echo "Output directory: $OUTPUTDIR"
 else
-    echo "Creating outoput directory"
+    echo "Creating outoput directory $OUTPUTDIR"
     mkdir -p "$OUTPUTDIR" || error_exit "Cannot create directory $OUTPUTDIR" 
 fi
+
+echo "Activating conda env"
+source "${CONDA_ACTIVATE}" "${CONDA_ENV}"
 
 if [ "${EXECUTION}" == "cluster" ]
 then
@@ -64,3 +69,4 @@ then
 else
     echo "Execution mode: single"
     snakemake -k -s "$VIRSEARCHDIR/Snakemake" -j $NUMTHREADS --config input="$INPUTDIR" output="$OUTPUTDIR"
+fi
