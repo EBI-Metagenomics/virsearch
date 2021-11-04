@@ -21,7 +21,7 @@ error_exit()
     exit 1
 }
 
-while getopts "h?:m:p:e:" args; do
+while getopts "h?:i:o:n:e:" args; do
   case $args in
       h|\?)
           echo "Usage: virsearch.sh -i <input dir with fasta files (.fa)> -o <output dir> [-n <number of threads>] [-e <cluster or single execution>]";
