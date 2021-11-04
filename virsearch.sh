@@ -65,8 +65,8 @@ source "${CONDA_ACTIVATE}" "${CONDA_ENV}"
 if [ "${EXECUTION}" == "cluster" ]
 then
     echo "Execution mode: cluster"
-    snakemake -k -s "$VIRSEARCHDIR/Snakemake" -j $NUMTHREADS --cluster-config "$VIRSEARCHDIR/cluster.yml" --cluster 'bsub -n {cluster.nCPU} -M {cluster.mem} -o {cluster.output}' --config input="$INPUTDIR" output="$OUTPUTDIR"
+    snakemake -k -s "$VIRSEARCHDIR/Snakefile" -j $NUMTHREADS --cluster-config "$VIRSEARCHDIR/cluster.yml" --cluster 'bsub -n {cluster.nCPU} -M {cluster.mem} -o {cluster.output}' --config input="$INPUTDIR" output="$OUTPUTDIR"
 else
     echo "Execution mode: single"
-    snakemake -k -s "$VIRSEARCHDIR/Snakemake" -j $NUMTHREADS --config input="$INPUTDIR" output="$OUTPUTDIR"
+    snakemake -k -s "$VIRSEARCHDIR/Snakefile" -j $NUMTHREADS --config input="$INPUTDIR" output="$OUTPUTDIR"
 fi
