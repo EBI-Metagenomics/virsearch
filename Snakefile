@@ -11,8 +11,6 @@ OUTPUT_DIR = config["output"]
 
 IDS = glob_wildcards(INPUT_DIR+"/{id}.fa").id
 
-os.system("chmod -R +x tools")
-
 for sample in IDS:
     if not os.path.exists(OUTPUT_DIR+"/"+sample+"/logs"):
         os.makedirs(OUTPUT_DIR+"/"+sample+"/logs")
