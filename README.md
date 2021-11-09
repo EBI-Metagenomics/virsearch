@@ -16,7 +16,8 @@ git clone --recursive https://github.com/EBI-Metagenomics/virsearch.git
 3. Create the conda environment (it will install all tools and Snakemake inside a conda env named "virsearch").
 
 ```
-conda  env create -f envs/virsearch.yml
+conda env create -f envs/virsearch.yml
+conda activate virsearch
 ```
 
 4. Download and extract necessary databases (uncompressed directory will require a total of 30 GB).
@@ -37,6 +38,15 @@ snakemake --use-conda -k -j 4
 2. (option 2) Run the pipeline on a cluster (e.g., LSF)
 ```
 snakemake --use-conda -k -j 100 --cluster-config cluster.yml --cluster 'bsub -n {cluster.nCPU} -M {cluster.mem} -o {cluster.output}'
+```
+
+### EBI Codon execution
+The `virsearch.sh` file is a wrapper script to run the pipeline on EBI Codon.
+
+Usage:
+
+```
+virsearch.sh -i <input dir with fasta files (.fa)> -o <output dir> [-n <number of threads>] [-e <cluster or single execution>]
 ```
 
 ## Output
