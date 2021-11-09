@@ -6,14 +6,20 @@ It first detects viral sequences in assemblies (`.fa` files) with [VirSorter2](h
 
 ## Installation
 
-1. Install [conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html), [snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html) (tested v6.3.0) and [USEARCH](https://www.drive5.com/usearch/download.html).
+1. Install [conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html) and get [USEARCH](https://www.drive5.com/usearch/download.html).
 
 2. Clone repository
 ```
-git clone --recursive https://github.com/alexmsalmeida/virsearch.git
+git clone --recursive https://github.com/EBI-Metagenomics/virsearch.git
 ```
 
-3. Download and extract necessary databases (uncompressed directory will require a total of 30 GB).
+3. Create the conda environment (it will install all tools and Snakemake inside a conda env named "virsearch").
+
+```
+conda  env create -f envs/virsearch.yml
+```
+
+4. Download and extract necessary databases (uncompressed directory will require a total of 30 GB).
 
 ```
 wget http://ftp.ebi.ac.uk/pub/databases/metagenomics/genome_sets/virsearch_db.tar.gz
